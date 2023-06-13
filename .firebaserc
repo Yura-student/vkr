@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "career-manager-974b7": {
+      "hosting": {
+        "reqres-app": [
+          "career-manager-974b7"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "career-manager-974b7"
+  }
+}
