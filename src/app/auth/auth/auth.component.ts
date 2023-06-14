@@ -9,14 +9,18 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class AuthComponent {
   email = new FormControl('', [Validators.required, Validators.email]);
-  password = new FormControl('', [Validators.required]);
+  password = new FormControl('', [Validators.minLength(6)]);
 
   getErrorMessage() {
     if (this.email.hasError('required')) {
       return 'Поле обязательно';
     }
 
-    return this.email.hasError('email') ? 'Not a valid email' : '';
+    if (this.password.hasError('minlength')) {
+      return 'Введите не менее 6 символов';
+    }
+
+    return this.email.hasError('email') ? 'Некорректный email' : '';
   }
 
   constructor(private afAuth: AngularFireAuth) {
