@@ -14,6 +14,7 @@ export class UserDetailsComponent implements OnInit {
 
   userForm!: FormGroup;
   user!: User;
+  first_name: any;
 
   constructor(
     private route: ActivatedRoute,

@@ -1,16 +1,16 @@
-<nav mat-tab-nav-bar backgroundColor="primary">
-  <a
-    mat-tab-link
-    *ngFor="let link of links"
-    [routerLink]="[link]"
-    routerLinkActive
-    #rla="routerLinkActive"
-    [active]="rla.isActive"
-  >
-    {{ link }}
-  </a>
-</nav>
+<!--<nav mat-tab-nav-bar backgroundColor="primary">-->
+<!--  <a-->
+<!--    mat-tab-link-->
+<!--    *ngFor="let link of links"-->
+<!--    [routerLink]="[link]"-->
+<!--    routerLinkActive-->
+<!--    #rla="routerLinkActive"-->
+<!--    [active]="rla.isActive"-->
+<!--  >-->
+<!--    {{ link }}-->
+<!--  </a>-->
+<!--</nav>-->
 
-<div class="container">
+
   <router-outlet></router-outlet>
-</div>
+
