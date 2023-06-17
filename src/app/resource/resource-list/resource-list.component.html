@@ -23,19 +23,19 @@
   <input matInput (keyup)="applyFilter($event)" #input>
 </mat-form-field>
 <div class="container">
-<div class="table">
-<table mat-table [dataSource]="users" matSort class="mat-elevation-z8">
+<div class="mat-elevation-z8">
+<table mat-table [dataSource]="users" matSort >
   <ng-container matColumnDef="rate">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Рейтинг</th>
-    <td mat-cell *matCellDef="let element">{{ element.rate }}</td>
+    <td mat-cell *matCellDef="let element" [ngStyle]="getRateCellStyle(element.rate)">{{ element.rate | number:'1.1-1' }}</td>
   </ng-container>
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Ф.И.О.</th>
     <td mat-cell *matCellDef="let element">{{ element.name }}</td>
   </ng-container>
   <ng-container matColumnDef="achievements">
-    <th mat-header-cell  *matHeaderCellDef>Достижения</th>
-    <td mat-cell *matCellDef="let element">{{ element.achievements }}</td>
+    <th mat-header-cell  *matHeaderCellDef style="text-align: center">Перечень достижений</th>
+    <td mat-cell *matCellDef="let element " >{{ element.achievements }}</td>
   </ng-container>
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr
@@ -45,6 +45,11 @@
   ></tr>
 
 </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 hidePageSize
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
+  </div>
   <button
     mat-icon-button
     matListItemMeta
@@ -54,13 +59,9 @@
   <button
     mat-icon-button
     matListItemMeta
+    (click)="addAchievement()"
   >
     <mat-icon>add</mat-icon>
   </button>
+</div>
 
-</div>
-</div>
-<mat-paginator [pageSizeOptions]="[5, 10, 20]"
-               hidePageSize
-               aria-label="Select page of periodic elements">
-</mat-paginator>
