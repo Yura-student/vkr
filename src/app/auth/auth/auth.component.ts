@@ -1,6 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { FormControl, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -8,25 +14,40 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent {
-  email = new FormControl('', [Validators.required, Validators.email]);
-  password = new FormControl('', [Validators.minLength(6)]);
+  userForm!: FormGroup;
 
-  getErrorMessage() {
-    if (this.email.hasError('required')) {
-      return 'Поле обязательно';
-    }
-
-    if (this.password.hasError('minlength')) {
-      return 'Введите не менее 6 символов';
-    }
-
-    return this.email.hasError('email') ? 'Некорректный email' : '';
+  constructor(
+    private fireAuth: AngularFireAuth,
+    private router: Router,
+    private formBuilder: FormBuilder
+  ) {
+    this.userForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    });
+    // this.login('root@gmail.com', '123qwe').then((r) => console.log(r));
   }
 
-  constructor(private afAuth: AngularFireAuth) {
-    this.login('root@gmail.com', '123qwe').then((r) => console.log(r));
+  login() {
+    if (this.userForm.valid) {
+      this.fireAuth
+        .signInWithEmailAndPassword(
+          this.userForm.value.email,
+          this.userForm.value.password
+        )
+        .then(() => {
+          this.router.navigate(['resources']);
+        })
+        .catch((e) => {
+          alert('Не удалось войти! Попробуйте снова');
+        });
+    }
   }
-  login(email: string, password: string) {
-    return this.afAuth.signInWithEmailAndPassword(email, password);
+
+  //выход
+  logout() {
+    this.fireAuth.signOut().then(() => {
+      this.router.navigate(['/users']);
+    });
   }
 }
