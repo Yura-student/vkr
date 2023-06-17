@@ -1,25 +1,66 @@
-<table mat-table [dataSource]="dataSource$ | async" class="mat-elevation-z8">
+
+<div class="nav">
+  <div class="h3">
+  <div class="h1">
+    Сайт индивидуальных достижений
+  </div>
+  <div class="h2">
+    Твой рейтинг - это отражение твоего потенциала. Раскрой свои возможности, превзойди ожидания и воплоти свои амбиции!
+  </div>
+  </div>
+  <div class="btn">
+  <button
+    mat-raised-button
+    color="warn"
+    >
+    Выйти
+  </button>
+  </div>
+</div>
+
+<mat-form-field >
+  <mat-label>Поиск</mat-label>
+  <input matInput (keyup)="applyFilter($event)" #input>
+</mat-form-field>
+<div class="container">
+<div class="table">
+<table mat-table [dataSource]="users" matSort class="mat-elevation-z8">
+  <ng-container matColumnDef="rate">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Рейтинг</th>
+    <td mat-cell *matCellDef="let element">{{ element.rate }}</td>
+  </ng-container>
   <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Ф.И.О.</th>
     <td mat-cell *matCellDef="let element">{{ element.name }}</td>
   </ng-container>
-  <ng-container matColumnDef="year">
-    <th mat-header-cell *matHeaderCellDef>Year</th>
-    <td mat-cell *matCellDef="let element">{{ element.year }}</td>
+  <ng-container matColumnDef="achievements">
+    <th mat-header-cell  *matHeaderCellDef>Достижения</th>
+    <td mat-cell *matCellDef="let element">{{ element.achievements }}</td>
   </ng-container>
-  <ng-container matColumnDef="color">
-    <th mat-header-cell *matHeaderCellDef>Color</th>
-    <td mat-cell *matCellDef="let element">{{ element.color }}</td>
-  </ng-container>
-  <ng-container matColumnDef="pantone_value">
-    <th mat-header-cell *matHeaderCellDef>pantone_value</th>
-    <td mat-cell *matCellDef="let element">{{ element.pantone_value }}</td>
-  </ng-container>
-
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr
-    mat-row
+        mat-row
     *matRowDef="let row; columns: displayedColumns"
     [style.background-color]="row.color"
   ></tr>
+
 </table>
+  <button
+    mat-icon-button
+    matListItemMeta
+  >
+    <mat-icon>delete</mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    matListItemMeta
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+
+</div>
+</div>
+<mat-paginator [pageSizeOptions]="[5, 10, 20]"
+               hidePageSize
+               aria-label="Select page of periodic elements">
+</mat-paginator>
