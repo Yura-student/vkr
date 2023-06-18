@@ -16,7 +16,7 @@ const routes: Routes = [
     children: [
       { path: '', component: ResourceListComponent },
       { path: ':id', component: ResourceDetailsComponent },
-      { path: 'new', component: ResourceDetailsComponent },
+      { path: 'add', component: ResourceDetailsComponent },
     ],
   },
   { path: 'auth', component: AuthComponent },

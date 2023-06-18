@@ -17,6 +17,14 @@ export class ResourcePageComponent {
   }
 
   add() {
-    this.router.navigate(['/add']);
+    this.router.navigate(['/resources/add']);
+  }
+
+  cancel() {
+    this.router.navigate(['/resources']);
+  }
+
+  isAddPage(): boolean {
+    return this.router.url === '/resources/add';
   }
 }
