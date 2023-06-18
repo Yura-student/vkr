@@ -16,6 +16,6 @@ export class UserListComponent {
   //выход
 
   login() {
-    this.router.navigate(['/auth']);
+    this.router.navigate(['auth']);
   }
 }
