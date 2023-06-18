@@ -43,11 +43,4 @@ export class AuthComponent {
         });
     }
   }
-
-  //выход
-  logout() {
-    this.fireAuth.signOut().then(() => {
-      this.router.navigate(['/users']);
-    });
-  }
 }

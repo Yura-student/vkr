@@ -14,46 +14,51 @@
 <!--  </mat-form-field>-->
 <!--</div>-->
 <div class="container">
-
   <mat-card>
-  <mat-card-content>
-<form [formGroup]="userForm" (ngSubmit)="login()">
-  <p class = 'header'>Авторизация</p>
-  <div class="window">
-  <mat-form-field appearance="outline">
-    <mat-label>Введите потчу</mat-label>
-    <input  matInput placeholder="pat@example.ru" formControlName="email" />
-    <mat-error *ngIf="userForm.controls['email'].errors?.['required']"
-    >Поле обязательно
-    </mat-error>
-    <mat-error *ngIf="userForm.controls['email'].errors?.['email']"
-    >Пример: pat@example.ru
-    </mat-error>
-  </mat-form-field>
-  </div>
-  <div >
-    <mat-form-field appearance="outline">
-    <mat-label>Введите пароль</mat-label>
-    <input matInput formControlName="password" />
-      <mat-error *ngIf="userForm.controls['password'].errors?.['required']"
-      >Поле обязательно
-      </mat-error>
-    <mat-error *ngIf="userForm.controls['password'].errors?.['minlength']"
-    >Пароль не менее 6 символов
-    </mat-error>
-  </mat-form-field>
-    </div>
-  <div class="btn">
-  <button
-    mat-raised-button
-    color="accent"
-    type="submit"
-    [disabled]="userForm.invalid"
-  >
-    Войти
-  </button>
-  </div>
-</form>
-</mat-card-content>
-</mat-card>
+    <mat-card-content>
+      <form [formGroup]="userForm" (ngSubmit)="login()">
+        <p class="header">Авторизация</p>
+        <div class="window">
+          <mat-form-field appearance="outline">
+            <mat-label>Введите потчу</mat-label>
+            <input
+              matInput
+              placeholder="pat@example.ru"
+              formControlName="email"
+            />
+            <mat-error *ngIf="userForm.controls['email'].errors?.['required']"
+              >Поле обязательно
+            </mat-error>
+            <mat-error *ngIf="userForm.controls['email'].errors?.['email']"
+              >Пример: pat@example.ru
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Введите пароль</mat-label>
+            <input matInput formControlName="password" />
+            <mat-error
+              *ngIf="userForm.controls['password'].errors?.['required']"
+              >Поле обязательно
+            </mat-error>
+            <mat-error
+              *ngIf="userForm.controls['password'].errors?.['minlength']"
+              >Пароль не менее 6 символов
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="btn">
+          <button
+            mat-raised-button
+            color="accent"
+            type="submit"
+            [disabled]="userForm.invalid"
+          >
+            Войти
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
 </div>
