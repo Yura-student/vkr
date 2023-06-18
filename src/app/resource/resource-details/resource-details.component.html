@@ -1,0 +1,67 @@
+<mat-card-content>
+  <form [formGroup]="userForm" (ngSubmit)="updateUser()">
+    <mat-form-field appearance="outline">
+      <mat-label>rate1</mat-label>
+      <input matInput formControlName="rate1" />
+      <mat-error *ngIf="userForm.controls['rate1'].errors?.['required']"
+        >Поле обязательно
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>rate2</mat-label>
+      <input matInput formControlName="rate2" />
+      <mat-error *ngIf="userForm.controls['rate2'].errors?.['required']"
+        >Поле обязательно
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>rate3</mat-label>
+      <input matInput formControlName="rate3" />
+      <mat-error *ngIf="userForm.controls['rate3'].errors?.['required']"
+        >Поле обязательно
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>rate4</mat-label>
+      <input matInput formControlName="rate4" />
+      <mat-error *ngIf="userForm.controls['rate4'].errors?.['required']"
+        >Поле обязательно
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>rate5</mat-label>
+      <input matInput formControlName="rate5" />
+      <mat-error *ngIf="userForm.controls['rate5'].errors?.['required']"
+        >Поле обязательно
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>name</mat-label>
+      <input matInput formControlName="name" />
+      <mat-error *ngIf="userForm.controls['name'].errors?.['required']"
+        >Поле обезательно
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>achievements</mat-label>
+
+      <textarea
+        matInput
+        formControlName="achievements"
+        cdkTextareaAutosize
+      ></textarea>
+      <mat-error *ngIf="userForm.controls['achievements'].errors?.['required']"
+        >First Name is required
+      </mat-error>
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="userForm.invalid"
+    >
+      Update
+    </button>
+  </form>
+</mat-card-content>
