@@ -1,7 +1,6 @@
-export interface Resource {
-  id: number;
+export interface User {
+  id: string;
+  rate: number;
+  achievements: string;
   name: string;
-  year: number;
-  color: string;
-  pantone_value: string;
 }
