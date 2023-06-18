@@ -7,6 +7,20 @@
   <mat-card-content>
     <form [formGroup]="userForm" (ngSubmit)="updateUser()">
       <mat-form-field appearance="outline">
+        <mat-label>Ф.И.О.</mat-label>
+        <input matInput formControlName="first_name" />
+        <mat-error *ngIf="userForm.controls['first_name'].errors?.['required']"
+          >Поле обязательно
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="last_name" />
+        <mat-error *ngIf="userForm.controls['last_name'].errors?.['required']"
+          >Last Name is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
         <mat-label>First Name</mat-label>
         <input matInput formControlName="first_name" />
         <mat-error *ngIf="userForm.controls['first_name'].errors?.['required']"
@@ -20,6 +34,45 @@
           >Last Name is required
         </mat-error>
       </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="first_name" />
+        <mat-error *ngIf="userForm.controls['first_name'].errors?.['required']"
+          >First Name is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="last_name" />
+        <mat-error *ngIf="userForm.controls['last_name'].errors?.['required']"
+          >Last Name is required
+        </mat-error>
+      </mat-form-field><mat-form-field appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="last_name" />
+        <mat-error *ngIf="userForm.controls['last_name'].errors?.['required']"
+          >Last Name is required
+        </mat-error>
+      </mat-form-field><mat-form-field appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="last_name" />
+        <mat-error *ngIf="userForm.controls['last_name'].errors?.['required']"
+          >Last Name is required
+        </mat-error>
+      </mat-form-field><mat-form-field appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="last_name" />
+        <mat-error *ngIf="userForm.controls['last_name'].errors?.['required']"
+          >Last Name is required
+        </mat-error>
+      </mat-form-field><mat-form-field appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="last_name" />
+        <mat-error *ngIf="userForm.controls['last_name'].errors?.['required']"
+          >Last Name is required
+        </mat-error>
+      </mat-form-field>
+
       <button
         mat-raised-button
         color="primary"

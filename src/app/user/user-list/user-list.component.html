@@ -1,33 +1,14 @@
-<mat-action-list>
-  <a mat-list-item *ngFor="let user of users" [routerLink]="[user.id]">
-    <img matListItemAvatar [src]="user.avatar" />
-    <h3 matListItemTitle>{{ user.first_name }} {{ user.last_name }}</h3>
-    <p matListItemLine>{{ user.email }}</p>
-    <button
-      mat-icon-button
-      matListItemMeta
-      (click)="deleteUser($event, user.id)"
-    >
-      <mat-icon>delete</mat-icon>
-    </button>
-  </a>
-  <mat-paginator
-    hidePageSize="true"
-    [length]="totalUsers"
-    [pageSize]="pageSize"
-    [pageIndex]="currentPageIndex"
-    (page)="onPageChange($event)"
-  >
-  </mat-paginator>
-</mat-action-list>
+<div class="nav">
+  <div class="h3">
+    <div class="h1">Сайт индивидуальных достижений</div>
+    <div class="h2">
+      Твой рейтинг - это отражение твоего потенциала. Раскрой свои возможности,
+      превзойди ожидания и воплоти свои амбиции!
+    </div>
+  </div>
+  <div class="btn">
+    <button mat-raised-button color="warn" (click)="login()">Войти</button>
+  </div>
+</div>
 
-<ng-template #deleteConfirmationDialog>
-  <h2 mat-dialog-title>Confirm Delete</h2>
-  <mat-dialog-content>
-    <p>Are you sure you want to delete this user?</p>
-  </mat-dialog-content>
-  <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close color="primary">Cancel</button>
-    <button mat-button [mat-dialog-close]="true" color="warn">Delete</button>
-  </mat-dialog-actions>
-</ng-template>
+<router-outlet></router-outlet>
