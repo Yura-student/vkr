@@ -1,81 +1,41 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
-import { map, of } from 'rxjs';
+import {
+  AfterViewInit,
+  Component,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
+import { filter, take } from 'rxjs';
 import { ResourceApiService } from '../resource-api.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatDialog } from '@angular/material/dialog';
+import { User } from '../resource';
+import { Router } from '@angular/router';
 
 const Material = [MatIconModule];
+
 @Component({
   selector: 'app-resource-list',
   templateUrl: './resource-list.component.html',
   styleUrls: ['./resource-list.component.scss'],
 })
-export class ResourceListComponent {
-  pageSize: number = 10;
-
+export class ResourceListComponent implements AfterViewInit {
   displayedColumns: string[] = ['rate', 'name', 'achievements'];
-
-  users = [
-    {
-      rate: 10,
-      achievements:
-        'Благодарственное письмо от руководителя (2 шт.), подача рационализаторского предложения, опыт замещения руководителя (2 недели), внедрение нового проекта (1 шт.), участие в общественной жизни организации, повышение квалификаци Благодарственное письмо от руководителя (2 шт.), подача рационализаторского предложения, опыт замещения руководителя (2 недели), внедрение нового проекта (1 шт.), участие в общественной жизни организации, повышение квалификаци',
-      name: 'Иванов Иван Иванович',
-    },
-    {
-      rate: 9.7,
-      achievements:
-        'Благодарственное письмо от руководителя (1 шт.), подача рационализаторского предложения, опыт замещения руководителя (2 недели), внедрение нового проекта (1 шт.), участие в общественной жизни организации, повышение квалификации',
-      name: 'Сидоров Константин Гринорьевич',
-    },
-
-    {
-      achievements:
-        'Подача рационализаторского предложения, опыт замещения руководителя (1 недели), внедрение нового проекта (1 шт.), участие в общественной жизни организации, повышение квалификации',
-      name: 'Мох Сергей Иванович',
-      rate: 9.0,
-    },
-    {
-      achievements:
-        'Подача рационализаторского предложения, опыт замещения руководителя (1 недели), внедрение нового проекта (1 шт.), участие в общественной жизни организации, повышение квалификации',
-      name: 'Мох Сергей Иванович',
-      rate: 9.0,
-    },
-    {
-      achievements:
-        'Подача рационализаторского предложения, опыт замещения руководителя (1 недели), внедрение нового проекта (1 шт.), участие в общественной жизни организации, повышение квалификации',
-      name: 'Мох Сергей Иванович',
-      rate: 8.9,
-    },
-    {
-      achievements:
-        'Подача рационализаторского предложения, опыт замещения руководителя (1 недели), внедрение нового проекта (1 шт.), участие в общественной жизни организации, повышение квалификации',
-      name: 'Мох Сергей Иванович',
-      rate: 7.0,
-    },
-    {
-      achievements:
-        'Подача рационализаторского предложения, опыт замещения руководителя (1 недели), внедрение нового проекта (1 шт.), участие в общественной жизни организации, повышение квалификации',
-      name: 'Мох Сергей Иванович',
-      rate: 6.3,
-    },
-  ];
-  dataSource$ = of(this.users);
 
   selectedUser: any; // Placeholder for the selected user
 
-  addAchievement() {
-    if (this.selectedUser) {
-      // Logic to add an achievement to the selected user
-      this.selectedUser.achievements.push('New Achievement');
-    }
+  editAchievement(id: string) {
+    this.router.navigate(['/resources/', id]);
   }
-  dataSource = new MatTableDataSource(this.users);
 
-  // @ViewChild(MatSort) sort: MatSort;
-  // @ViewChild(MatPaginator) paginator: MatPaginator;
+  dataSource = new MatTableDataSource(this.resourceApiService.users);
+
+  @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild('deleteConfirmationDialog')
+  deleteConfirmationDialog!: TemplateRef<any>;
   //
   //   ngOnInit() {
   //       this.dataSource.sort = this.sort;
@@ -86,6 +46,7 @@ export class ResourceListComponent {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+
   getRateCellStyle(rate: number) {
     if (rate >= 9.1) {
       return { 'background-color': 'rgba(79,227,31,0.88)' };
@@ -97,5 +58,31 @@ export class ResourceListComponent {
       return {}; // Возвращаем пустой объект, если нет соответствующего условия
     }
   }
-  constructor(private resourceApiService: ResourceApiService) {}
+
+  constructor(
+    private resourceApiService: ResourceApiService,
+    private dialog: MatDialog,
+    private router: Router
+  ) {}
+
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+  handleDelete(user: User) {
+    const dialogRef = this.dialog.open(this.deleteConfirmationDialog);
+
+    dialogRef
+      .afterClosed()
+      .pipe(
+        filter((value) => Boolean(value)),
+        take(1)
+      )
+      .subscribe(() => {
+        this.resourceApiService.users = this.resourceApiService.users.filter(
+          (item) => item !== user
+        );
+        this.dataSource.data = this.resourceApiService.users;
+      });
+  }
 }
