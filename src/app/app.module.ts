@@ -25,6 +25,8 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideDatabase, getDatabase } from '@angular/fire/database';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { MatSortModule } from '@angular/material/sort';
+import { ResourceDetailsComponent } from './resource/resource-details/resource-details.component';
+import { ResourcePageComponent } from './resource/resource-page/resource-page.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { MatSortModule } from '@angular/material/sort';
     UserDetailsComponent,
     ResourceListComponent,
     AuthComponent,
+    ResourceDetailsComponent,
+    ResourcePageComponent,
   ],
   imports: [
     BrowserModule,

@@ -4,12 +4,21 @@ import { UserListComponent } from './user/user-list/user-list.component';
 import { UserDetailsComponent } from './user/user-details/user-details.component';
 import { ResourceListComponent } from './resource/resource-list/resource-list.component';
 import { AuthComponent } from './auth/auth/auth.component';
+import { ResourcePageComponent } from './resource/resource-page/resource-page.component';
+import { ResourceDetailsComponent } from './resource/resource-details/resource-details.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/users', pathMatch: 'full' },
-  { path: 'users', component: UserListComponent },
+  { path: '', component: UserListComponent },
   { path: 'users/:id', component: UserDetailsComponent },
-  { path: 'resources', component: ResourceListComponent },
+  {
+    path: 'resources',
+    component: ResourcePageComponent,
+    children: [
+      { path: '', component: ResourceListComponent },
+      { path: ':id', component: ResourceDetailsComponent },
+      { path: 'new', component: ResourceDetailsComponent },
+    ],
+  },
   { path: 'auth', component: AuthComponent },
 ];
 
