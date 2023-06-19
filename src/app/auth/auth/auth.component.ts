@@ -15,7 +15,6 @@ import { Router } from '@angular/router';
 })
 export class AuthComponent {
   userForm!: FormGroup;
-
   constructor(
     private fireAuth: AngularFireAuth,
     private router: Router,
