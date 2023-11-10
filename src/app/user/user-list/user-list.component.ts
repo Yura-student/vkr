@@ -1,8 +1,4 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { filter, switchMap, take } from 'rxjs';
-import { UserApiService } from '../user-api.service';
-import { User } from '../user';
+import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 

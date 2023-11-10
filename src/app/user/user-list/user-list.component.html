@@ -1,28 +1,30 @@
-<div class="nav">
-  <div class="h3">
-    <div class="h1">Сайт индивидуальных достижений</div>
-    <div class="h2">
-      Твой рейтинг - это отражение твоего потенциала. Раскрой свои возможности,
-      превзойди ожидания и воплоти свои амбиции!
+<div class="container">
+  <div class="nav">
+    <div class="h3">
+      <div class="h1">Сайт индивидуальных достижений</div>
+      <div class="h2">
+        Твой рейтинг - это отражение твоего потенциала. Раскрой свои
+        возможности, превзойди ожидания и воплоти свои амбиции!
+      </div>
+    </div>
+    <div class="btn">
+      <button mat-raised-button color="warn" (click)="login()">Войти</button>
     </div>
   </div>
-  <div class="btn">
-    <button mat-raised-button color="warn" (click)="login()">Войти</button>
+  <div class="img">
+    <img
+      src="https://w-dog.ru/wallpapers/9/6/473147651188013.jpg"
+      alt="Forest Image"
+      class="forest-image imd"
+    />
+    <div class="title">
+      Создаем устойчивое
+      <br />
+      <br />
+      энергетическое будущее
+    </div>
   </div>
+  <div class="footer"></div>
 </div>
-<div class="img">
-  <img
-    src="https://w-dog.ru/wallpapers/9/6/473147651188013.jpg"
-    alt="Forest Image"
-    class="forest-image"
-  />
-  <div class="title">
-    Создаем устойчивое
-    <br />
-    <br />
-    энергетическое будущее
-  </div>
-</div>
-<div class="footer"></div>
 
 <router-outlet></router-outlet>

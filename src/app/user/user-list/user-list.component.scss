@@ -1,3 +1,9 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Задаем контейнеру высоту 100% высоты видимой области */
+}
+
 .nav {
   display: flex;
   justify-content: space-around;
@@ -43,30 +49,48 @@
   }
 }
 
-.forest-image {
+img {
+  max-width: 100%;
+}
+
+//.img {
+//  flex: 1;
+//}
+
+.imd {
+  //object-fit: cover;
   display: flex;
-  width: 100%;
-  height: auto;
-  max-width: 95%;
-  max-height: 650px;
+  width: 95%;
+  height: 72vh;
   border-radius: 24px;
   margin: 0 auto;
 }
+//.forest-image {
+//  display: flex;
+//  width: 99vw;
+//  height: 69vh;
+//  max-width: 95%;
+//  //max-height: 80vh;
+//  border-radius: 24px;
+//  margin: 0 auto;
+//  /* Масштабирование изображения, чтобы оно заполнило всю доступную область */
+//}
 
 .title {
   font-size: 2.875rem;
   color: white;
   padding: 5px;
+  display: flex;
   position: absolute;
   left: 4vw;
-  bottom: 100px;
+  bottom: 15vh;
 }
 
 .footer {
   width: 100%;
-  height: 50px;
+  height: 10%;
   background-color: #0aa373;
-  position: fixed;
+  display: block;
   bottom: 0;
-  left: 0;
+  margin-top: 10px;
 }

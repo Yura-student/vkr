@@ -1,11 +1,6 @@
 import { Component, Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class AuthComponent {
   userForm!: FormGroup;
+
   constructor(
     private fireAuth: AngularFireAuth,
     private router: Router,
