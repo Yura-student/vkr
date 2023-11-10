@@ -1,6 +1,6 @@
 # See Demo
 
-[https://monsgt-r.github.io/reqres-app](https://monsgt-r.github.io/reqres-app)
+
 
 ## Development server
 
